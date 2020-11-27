@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
+import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import TopBar from "components/TopBar";
 import SideBar from "components/SideBar";
 import Inbox from "views/Inbox";
@@ -44,6 +44,6 @@ function App() {
 }
 
 export default App;
-{
-  /* <p dangerouslySetInnerHTML={{__html: text}}></p> */
-}
+// {
+//   /* <p dangerouslySetInnerHTML={{__html: text}}></p> */
+// }
