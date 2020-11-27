@@ -1,28 +1,31 @@
 import React from "react";
-import {Layout} from "antd";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faBars} from "@fortawesome/free-solid-svg-icons";
+import {faBars, faEnvelope} from "@fortawesome/free-solid-svg-icons";
 
 import "./index.scss";
 
-const {Header} = Layout;
-
 const TopBar = ({onDrawerClick}) => {
-  const name = "Tubes Kripto";
+  const name = "tubeskripto@gmail.com";
 
   return (
-    <Header className="topbar">
-      <div className="topbar-container">
-        <div className="hamburger-icon">
+    <div className="topbar-container">
+      <p className="hamburger-icon">
+        <FontAwesomeIcon icon={faBars} onClick={onDrawerClick} />
+      </p>
+      <div>
+        <p className="product">
           <FontAwesomeIcon
-            icon={faBars}
+            icon={faEnvelope}
             onClick={onDrawerClick}
-            style={{fontSize: "20px"}}
+            className="icon"
           />
-        </div>
-        <p className="name">Welcome {name} !</p>
+          <b>KriptMail</b>
+        </p>
+        <p className="username">
+          Welcome <b>{name}</b>!
+        </p>
       </div>
-    </Header>
+    </div>
   );
 };
 
