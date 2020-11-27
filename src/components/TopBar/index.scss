@@ -1,0 +1,27 @@
+.topbar {
+  background: #bb001b !important;
+  padding: 0 2rem !important;
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 0;
+  right: 0;
+  z-index: 1000;
+
+  .topbar-container {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+
+    .hamburger-icon {
+      font-size: 20px;
+    }
+    .name {
+      margin: 0;
+      font-size: 1rem;
+    }
+  }
+}

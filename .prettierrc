@@ -1,0 +1,9 @@
+{
+  "trailingComma": "none",
+  "bracketSpacing": false,
+  "proseWrap": "preserve",
+  "semi": true,
+  "jsxBrackets": true,
+  "arrowParens": "avoid",
+  "endOfLine": "auto"
+}
