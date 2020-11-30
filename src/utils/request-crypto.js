@@ -1,12 +1,12 @@
 import axios from "axios";
 
 // create an axios instance
-const service_backend = axios.create({
+const serviceCrypto = axios.create({
   baseURL: "http://localhost:5001", // url = base url + request url
-  timeout: 15 * 1000// request timeout
+  timeout: 15 * 1000 // request timeout
 });
 
-service_backend.interceptors.response.use(
+serviceCrypto.interceptors.response.use(
   response => {
     return response;
   },
@@ -17,4 +17,4 @@ service_backend.interceptors.response.use(
   }
 );
 
-export default service_backend;
+export default serviceCrypto;

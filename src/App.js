@@ -37,9 +37,9 @@ function App() {
             <Route path="/sent">
               <Sent />
             </Route>
-            <Route path="/generate_key">
+            {/* <Route path="/generate_key">
               <GenerateKey />
-            </Route>
+            </Route> */}
           </Switch>
         </div>
       </Router>
