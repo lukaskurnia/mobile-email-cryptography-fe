@@ -1,22 +1,16 @@
 import React, {useState} from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  useLocation
-} from "react-router-dom";
+import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import TopBar from "components/TopBar";
 import SideBar from "components/SideBar";
 import Inbox from "views/Inbox";
 import Compose from "views/Compose";
 import Sent from "views/Sent";
-// import GenerateKey from "views/GenerateKey";
-// import Send from "api/send";
+import GenerateKey from "views/GenerateKey";
+
 import classes from "./App.module.scss";
 
 function App() {
   const [isDrawerOpen, setDrawer] = useState(false);
-  // const location = useLocation();
 
   const onClose = () => {
     setDrawer(false);
@@ -40,9 +34,9 @@ function App() {
             <Route path="/sent">
               <Sent />
             </Route>
-            {/* <Route path="/generate_key">
+            <Route path="/generate_key">
               <GenerateKey />
-            </Route> */}
+            </Route>
             <Route exact path="/">
               <Inbox />
             </Route>

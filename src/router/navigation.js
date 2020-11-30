@@ -5,8 +5,8 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
   faInbox,
   faPlusCircle,
-  faShareSquare
-  // faKey
+  faShareSquare,
+  faKey
 } from "@fortawesome/free-solid-svg-icons";
 
 const Navigation = ({onClose}) => {
@@ -28,10 +28,10 @@ const Navigation = ({onClose}) => {
           <Link to="/sent">Sent</Link>
         </Menu.Item>
 
-        {/* <Menu.Item key="4" onClick={onClose}>
+        <Menu.Item key="4" onClick={onClose}>
           <FontAwesomeIcon icon={faKey} style={{marginRight: "10px"}} />
           <Link to="/generate_key">Generate Key</Link>
-        </Menu.Item> */}
+        </Menu.Item>
       </Menu>
     </>
   );
