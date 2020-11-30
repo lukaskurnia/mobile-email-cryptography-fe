@@ -1,14 +1,14 @@
 import React from "react";
 import {Drawer} from "antd";
 import Navigation from "router/navigation";
-import "./index.scss";
+import classes from "./index.module.scss";
 
 const SideBar = ({onClose, isDrawerOpen}) => {
   return (
     <Drawer
       title={
-        <p className="title">
-          Kript<span className="span-title">Mail</span>
+        <p className={classes.title}>
+          Kript<span className={classes.title__span}>Mail</span>
         </p>
       }
       placement="left"

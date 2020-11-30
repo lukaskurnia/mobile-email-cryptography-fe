@@ -2,7 +2,7 @@
 all: depend dev
 
 depend:
-	npm install
+	yarn
 
 dev:
-	npm start
+	yarn start

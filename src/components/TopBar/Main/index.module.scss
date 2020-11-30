@@ -1,4 +1,4 @@
-.topbar-container {
+.topbar {
   background: #bb001b;
   position: fixed;
   height: 12vh;
@@ -13,7 +13,7 @@
   align-items: center;
   color: white;
 
-  .hamburger-icon {
+  .hamburger {
     margin: 0;
     margin-left: 10px;
     font-size: 1.5rem;
@@ -30,6 +30,5 @@
     .icon {
       margin-right: 10px;
     }
-    // margin-left: 10px;
   }
 }

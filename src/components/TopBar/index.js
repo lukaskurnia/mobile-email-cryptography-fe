@@ -1,31 +1,19 @@
 import React from "react";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faBars, faEnvelope} from "@fortawesome/free-solid-svg-icons";
-
-import "./index.scss";
+import {useLocation} from "react-router-dom";
+import Compose from "./Compose";
+import Main from "./Main";
 
 const TopBar = ({onDrawerClick}) => {
-  const name = "tubeskripto@gmail.com";
+  const location = useLocation();
 
   return (
-    <div className="topbar-container">
-      <p className="hamburger-icon">
-        <FontAwesomeIcon icon={faBars} onClick={onDrawerClick} />
-      </p>
-      <div>
-        <p className="product">
-          <FontAwesomeIcon
-            icon={faEnvelope}
-            onClick={onDrawerClick}
-            className="icon"
-          />
-          <b>KriptMail</b>
-        </p>
-        <p className="username">
-          Welcome <b>{name}</b>!
-        </p>
-      </div>
-    </div>
+    <>
+      {location.pathname === "/compose" ? (
+        <Compose />
+      ) : (
+        <Main onDrawerClick={onDrawerClick} />
+      )}
+    </>
   );
 };
 

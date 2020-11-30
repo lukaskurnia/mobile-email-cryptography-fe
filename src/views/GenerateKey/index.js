@@ -1,6 +1,6 @@
 import {Button} from "antd";
 import React from "react";
-import "./index.scss";
+import classes from "./index.module.scss";
 import Crypto from "api/crypto";
 
 class GenerateKey extends React.Component {
@@ -27,31 +27,31 @@ class GenerateKey extends React.Component {
   render() {
     return (
       <div>
-        <Button className="center" onClick={this.clickGenerate}>
+        <Button className={classes.center} onClick={this.clickGenerate}>
           Generate ECDSA Key{" "}
         </Button>{" "}
         <br />
-        <p className="center">
+        <p className={classes.center}>
           <b>{this.state.private_key_label}</b>
         </p>
         <br />
-        <p className="center">{this.state.private_key}</p>
+        <p className={classes.center}>{this.state.private_key}</p>
         <br />
         <br />
         <br />
-        <p className="center">
+        <p className={classes.center}>
           <b>{this.state.public_key_1_label}</b>
         </p>
         <br />
-        <p className="center">{this.state.public_key_1}</p>
+        <p className={classes.center}>{this.state.public_key_1}</p>
         <br />
         <br />
         <br />
-        <p className="center">
+        <p className={classes.center}>
           <b>{this.state.public_key_2_label}</b>
         </p>
         <br />
-        <p className="center">{this.state.public_key_2}</p>
+        <p className={classes.center}>{this.state.public_key_2}</p>
         <br />
       </div>
     );

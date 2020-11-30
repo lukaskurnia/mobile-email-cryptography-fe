@@ -1,16 +1,22 @@
 import React, {useState} from "react";
-import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  useLocation
+} from "react-router-dom";
 import TopBar from "components/TopBar";
 import SideBar from "components/SideBar";
 import Inbox from "views/Inbox";
 import Compose from "views/Compose";
 import Sent from "views/Sent";
-import GenerateKey from "views/GenerateKey";
+// import GenerateKey from "views/GenerateKey";
 // import Send from "api/send";
-import "./App.scss";
+import classes from "./App.module.scss";
 
 function App() {
   const [isDrawerOpen, setDrawer] = useState(false);
+  // const location = useLocation();
 
   const onClose = () => {
     setDrawer(false);
@@ -23,15 +29,12 @@ function App() {
 
   return (
     <div>
-      <TopBar onDrawerClick={onDrawerClick} />
       <Router>
+        <TopBar onDrawerClick={onDrawerClick} />
         <SideBar onClose={onClose} isDrawerOpen={isDrawerOpen} />
-        <div className="content">
+        <div className={classes.content}>
           <Switch>
-            <Route exact path="/">
-              <Inbox />
-            </Route>
-            <Route path="/compose">
+            <Route path="/compose" name="compose">
               <Compose />
             </Route>
             <Route path="/sent">
@@ -40,6 +43,9 @@ function App() {
             {/* <Route path="/generate_key">
               <GenerateKey />
             </Route> */}
+            <Route exact path="/">
+              <Inbox />
+            </Route>
           </Switch>
         </div>
       </Router>
