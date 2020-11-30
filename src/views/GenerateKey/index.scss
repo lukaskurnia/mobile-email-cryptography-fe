@@ -1,0 +1,10 @@
+.center {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  position: absolute;
+  left: 50%;
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+  word-wrap: break-word;
+  max-width: 24rem;
+}

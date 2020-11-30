@@ -5,6 +5,7 @@ import SideBar from "components/SideBar";
 import Inbox from "views/Inbox";
 import Compose from "views/Compose";
 import Sent from "views/Sent";
+import GenerateKey from "views/GenerateKey";
 // import Send from "api/send";
 import "./App.scss";
 
@@ -35,6 +36,9 @@ function App() {
             </Route>
             <Route path="/sent">
               <Sent />
+            </Route>
+            <Route path="/generate_key">
+              <GenerateKey />
             </Route>
           </Switch>
         </div>
