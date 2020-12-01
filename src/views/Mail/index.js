@@ -23,6 +23,7 @@ const Mail = () => {
   const [isVerify, setVerify] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  // TODO: Replace dummy data with props message (date,from, subject, to, text, id)
   // Dummy Data
   const message = {
     date: ["Thu, 26 Nov 2020 18:33:04 -0800"],
