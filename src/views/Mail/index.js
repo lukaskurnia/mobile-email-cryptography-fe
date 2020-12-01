@@ -45,6 +45,7 @@ const Mail = () => {
 
   useEffect(() => {
     form.setFieldsValue({text: text});
+    //eslint-disable-next-line
   }, []);
 
   const process = async () => {
