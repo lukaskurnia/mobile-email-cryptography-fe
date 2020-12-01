@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {useHistory} from "react-router-dom";
-import {Form, Input, Button, Switch} from "antd";
+import {Form, Input, Button, Switch, Spin} from "antd";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPaperPlane} from "@fortawesome/free-solid-svg-icons";
 import Mail from "api/mail";
@@ -17,6 +17,7 @@ const Compose = () => {
   const [privateKey, setPrivateKey] = useState("");
   const [isEncrypted, setEncrypted] = useState(false);
   const [isSigned, setSigned] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const {TextArea} = Input;
   const [form] = Form.useForm();
@@ -24,6 +25,7 @@ const Compose = () => {
 
   const send = async () => {
     try {
+      setLoading(true);
       console.log("from", from);
       console.log("subject", subject);
       console.log("to", to);
@@ -52,9 +54,11 @@ const Compose = () => {
       };
 
       await Mail.send(data).then(res => res.data);
-      history.push("/sent");
+      setLoading(false);
+      history.push("/sentbox");
     } catch (e) {
       console.error(e);
+      setLoading(false);
     }
   };
 
@@ -122,86 +126,87 @@ const Compose = () => {
     reader.readAsText(e.target.files[0]);
   };
 
-  console.log(isEncrypted);
-  console.log(isSigned);
-  console.log(privateKey);
-
   return (
-    <div className={classes.compose}>
-      <div className={classes.switch_group}>
-        <Switch size="small" onChange={toggleEncrypt} />
-        <p className={classes.label_switch}>Encrypt email</p>
-      </div>
-      <div className={classes.switch_group}>
-        <Switch size="small" onChange={toggleSignature} />
-        <p className={classes.label_switch}>Add signature</p>
-      </div>
-      <Form form={form} onValuesChange={updateInput} onFinish={send}>
-        <Form.Item name="from" className={classes.box} initialValue={from}>
-          <Input
-            prefix={<span className={classes.label}>From</span>}
-            readOnly
-            className={classes.input}
-          />
-        </Form.Item>
-        <Form.Item name="to" className={classes.box}>
-          <Input
-            prefix={<span className={classes.label}>To</span>}
-            placeholder="wakgeng@gmail.com"
-            className={classes.input}
-          />
-        </Form.Item>
-        <Form.Item name="subject" className={classes.box}>
-          <Input placeholder="Subject" className={classes.input} />
-        </Form.Item>
-
-        {isEncrypted ? (
-          <Form.Item name="encrypt_key" className={classes.box}>
-            <Input placeholder="Key (32 Character)" className={classes.input} />
+    <Spin spinning={loading} size="large">
+      <div className={classes.compose}>
+        <div className={classes.switch_group}>
+          <Switch size="small" onChange={toggleEncrypt} />
+          <p className={classes.label_switch}>Encrypt email</p>
+        </div>
+        <div className={classes.switch_group}>
+          <Switch size="small" onChange={toggleSignature} />
+          <p className={classes.label_switch}>Add signature</p>
+        </div>
+        <Form form={form} onValuesChange={updateInput} onFinish={send}>
+          <Form.Item name="from" className={classes.box} initialValue={from}>
+            <Input
+              prefix={<span className={classes.label}>From</span>}
+              readOnly
+              className={classes.input}
+            />
           </Form.Item>
-        ) : null}
+          <Form.Item name="to" className={classes.box}>
+            <Input
+              prefix={<span className={classes.label}>To</span>}
+              placeholder="wakgeng@gmail.com"
+              className={classes.input}
+            />
+          </Form.Item>
+          <Form.Item name="subject" className={classes.box}>
+            <Input placeholder="Subject" className={classes.input} />
+          </Form.Item>
 
-        {isSigned ? (
-          <>
-            <Form.Item name="private_key" className={classes.box}>
+          {isEncrypted ? (
+            <Form.Item name="encrypt_key" className={classes.box}>
               <Input
-                placeholder="Your private key here.."
+                placeholder="Key (32 Character)"
                 className={classes.input}
-                style={{borderBottom: "none"}}
               />
             </Form.Item>
-            <div className={classes.uploader}>
-              <label>Or upload your private key: </label>
-              <input
-                type="file"
-                onChange={e => readPrivateKey(e)}
-                accept=".txt"
-              />
-            </div>
-          </>
-        ) : null}
+          ) : null}
 
-        <Form.Item name="text">
-          <TextArea
-            bordered={false}
-            autoSize
-            placeholder="Compose Email"
-            style={{fontSize: "1rem"}}
+          {isSigned ? (
+            <>
+              <Form.Item name="private_key" className={classes.box}>
+                <Input
+                  placeholder="Your private key here.."
+                  className={classes.input}
+                  style={{borderBottom: "none"}}
+                />
+              </Form.Item>
+              <div className={classes.uploader}>
+                <label>Or upload your private key: </label>
+                <input
+                  type="file"
+                  onChange={e => readPrivateKey(e)}
+                  accept=".txt"
+                />
+              </div>
+            </>
+          ) : null}
+
+          <Form.Item name="text">
+            <TextArea
+              bordered={false}
+              autoSize
+              placeholder="Compose Email"
+              style={{fontSize: "1rem"}}
+            />
+          </Form.Item>
+
+          <Button
+            type="primary"
+            className={classes.button}
+            shape="circle"
+            htmlType="submit"
+            size="large"
+            icon={
+              <FontAwesomeIcon className={classes.icon} icon={faPaperPlane} />
+            }
           />
-        </Form.Item>
-
-        <Button
-          type="primary"
-          className={classes.button}
-          shape="circle"
-          htmlType="submit"
-          size="large"
-          icon={
-            <FontAwesomeIcon className={classes.icon} icon={faPaperPlane} />
-          }
-        />
-      </Form>
-    </div>
+        </Form>
+      </div>
+    </Spin>
   );
 };
 

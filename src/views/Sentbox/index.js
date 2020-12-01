@@ -5,28 +5,28 @@ import MailCard from "components/MailCard";
 
 import classes from "./index.module.scss";
 
-const Inbox = () => {
-  const [inboxData, setData] = useState([]);
+const Sentbox = () => {
+  const [sentData, setData] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const fetchInbox = async () => {
+    const fetchSentbox = async () => {
       setLoading(true);
-      const data = await Mail.inbox().then(res => res.data);
+      const data = await Mail.sentbox().then(res => res.data);
       // Reverse order, most recent sent email will be on the top
       setData(data.reverse());
       setLoading(false);
     };
-    fetchInbox();
+    fetchSentbox();
   }, []);
 
   return (
-    <div className={classes.inbox}>
-      <p className={classes.title}>ALL INBOXES</p>
+    <div className={classes.sentbox}>
+      <p className={classes.title}>SENT</p>
       <Spin spinning={loading} size="large">
-        {inboxData.length > 0
-          ? inboxData.map((data, index) => (
-              <MailCard message={data} type="inbox" key={index} />
+        {sentData.length > 0
+          ? sentData.map((data, index) => (
+              <MailCard message={data} type="sentbox" key={index} />
             ))
           : null}
       </Spin>
@@ -34,4 +34,4 @@ const Inbox = () => {
   );
 };
 
-export default Inbox;
+export default Sentbox;

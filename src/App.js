@@ -4,7 +4,7 @@ import TopBar from "components/TopBar";
 import SideBar from "components/SideBar";
 import Inbox from "views/Inbox";
 import Compose from "views/Compose";
-import Sent from "views/Sent";
+import Sentbox from "views/Sentbox";
 import GenerateKey from "views/GenerateKey";
 
 import classes from "./App.module.scss";
@@ -31,8 +31,8 @@ function App() {
             <Route path="/compose" name="compose">
               <Compose />
             </Route>
-            <Route path="/sent">
-              <Sent />
+            <Route path="/sentbox">
+              <Sentbox />
             </Route>
             <Route path="/generate_key">
               <GenerateKey />

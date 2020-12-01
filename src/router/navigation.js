@@ -25,7 +25,7 @@ const Navigation = ({onClose}) => {
 
         <Menu.Item key="3" onClick={onClose}>
           <FontAwesomeIcon icon={faShareSquare} style={{marginRight: "10px"}} />
-          <Link to="/sent">Sent</Link>
+          <Link to="/sentbox">Sent</Link>
         </Menu.Item>
 
         <Menu.Item key="4" onClick={onClose}>
