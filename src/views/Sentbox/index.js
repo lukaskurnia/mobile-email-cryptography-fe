@@ -26,7 +26,12 @@ const Sentbox = () => {
       <Spin spinning={loading} size="large">
         {sentData.length > 0
           ? sentData.map((data, index) => (
-              <MailCard message={data} type="sentbox" id={data.id} key={index} />
+              <MailCard
+                message={data}
+                type="sentbox"
+                id={data.id}
+                key={index}
+              />
             ))
           : null}
       </Spin>

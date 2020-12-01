@@ -26,20 +26,19 @@ const Compose = () => {
   const send = async () => {
     try {
       setLoading(true);
-      console.log("from", from);
-      console.log("subject", subject);
-      console.log("to", to);
-      console.log("text", text);
-      console.log("key", key);
-      console.log("privateKey", privateKey);
-      console.log("isEncrypted", isEncrypted);
-      console.log("isSigned", isSigned);
+      // console.log("from", from);
+      // console.log("subject", subject);
+      // console.log("to", to);
+      // console.log("text", text);
+      // console.log("key", key);
+      // console.log("privateKey", privateKey);
+      // console.log("isEncrypted", isEncrypted);
+      // console.log("isSigned", isSigned);
 
       let message = text;
 
       if (isSigned) {
         const signature = await handleSignature(message);
-        console.log(signature);
         message += `\n<ds>${signature}</ds>`;
       }
 

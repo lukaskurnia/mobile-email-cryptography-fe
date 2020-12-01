@@ -24,7 +24,7 @@ const Mail = () => {
   const [isVerify, setVerify] = useState(false);
   const [loading, setLoading] = useState(false);
   const [text, setText] = useState("");
-  
+
   const [to, setTo] = useState([]);
   const [from, setFrom] = useState([]);
   const [subject, setSubject] = useState([]);
@@ -33,11 +33,11 @@ const Mail = () => {
   const {type, id} = useParams();
 
   useEffect(() => {
-    const fetchBoxById = async (id) => {
+    const fetchBoxById = async id => {
       setLoading(true);
-      
-      var result
-      if(type == "sentbox") {
+
+      let result;
+      if (type == "sentbox") {
         result = await MailApi.sentboxById(id);
       } else {
         result = await MailApi.inboxById(id);
@@ -48,15 +48,12 @@ const Mail = () => {
       setFrom([result.data.from]);
       setSubject([result.data.subject]);
       setDate([result.data.date]);
-      
+
       form.setFieldsValue({text: result.data.text});
       setLoading(false);
     };
     fetchBoxById(id);
   }, [id]);
-
-  console.log(type);
-  console.log(id);
 
   const {TextArea} = Input;
   const [form] = Form.useForm();
@@ -64,23 +61,21 @@ const Mail = () => {
   const process = async () => {
     try {
       setLoading(true);
-      console.log("key", key);
-      console.log("publicKey1", publicKey1);
-      console.log("publicKey2", publicKey2);
-      console.log("isDecrypted", isDecrypted);
-      console.log("isVerify", isVerify);
+      // console.log("key", key);
+      // console.log("publicKey1", publicKey1);
+      // console.log("publicKey2", publicKey2);
+      // console.log("isDecrypted", isDecrypted);
+      // console.log("isVerify", isVerify);
 
       let message = text;
 
       if (isDecrypted) {
         message = await handleDecrypt(message);
         form.setFieldsValue({decrypted_text: message});
-        console.log(message);
       }
 
       if (isVerify) {
         const status = await handleVerify(message);
-        console.log(status);
 
         if (status) {
           alert.success("This email is verified !");
