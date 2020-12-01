@@ -19,4 +19,14 @@ export default class Mail {
     const resp = await service.get("sentbox");
     return resp;
   }
+
+  static async inboxById(id) {
+    const resp = await service.get("inbox/" + id);
+    return resp;
+  }
+
+  static async sentboxById(id) {
+    const resp = await service.get("sentbox/" + id);
+    return resp;
+  }
 }

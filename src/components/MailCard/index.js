@@ -39,9 +39,6 @@ const MailCard = ({message, type, id}) => {
           </div>
           <p className={classes.preview}>{date[0]}</p>
         </div>
-        <p className={classes.preview}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
-        </p>
       </div>
     </div>
   );

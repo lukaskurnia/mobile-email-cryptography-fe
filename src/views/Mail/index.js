@@ -13,6 +13,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faUser, faCogs} from "@fortawesome/free-solid-svg-icons";
 import Crypto from "api/crypto";
 
+import MailApi from "api/mail";
 import classes from "./index.module.scss";
 
 const Mail = () => {
@@ -22,31 +23,43 @@ const Mail = () => {
   const [isDecrypted, setDecrypted] = useState(false);
   const [isVerify, setVerify] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [text, setText] = useState("");
+  
+  const [to, setTo] = useState([]);
+  const [from, setFrom] = useState([]);
+  const [subject, setSubject] = useState([]);
+  const [date, setDate] = useState([]);
 
-  // TODO: Replace dummy data with props message (date,from, subject, to, text, id)
-  // Dummy Data
-  const message = {
-    date: ["Thu, 26 Nov 2020 18:33:04 -0800"],
-    from: ["Google Community Team <googlecommunityteam-noreply@google.com>"],
-    subject: ["Tubes, finish setting up your new Google Account"],
-    to: ["tubeskripto@gmail.com"]
-  };
-  const text =
-    "\x98<\x9b?)'BW\x82Îè\x1eðZ\x08\x88#\x9bq9J1WÁJÂÀl»6\x940\n<ds>74a33ff87d36e5281363b1afe690a0e66308a795890cb89a85eaba8d26827ab3262bd1a4d2648b0989fdc442073bd125bbf457a53ada34ffa11e409f6f12a875</ds>";
-
-  const {to, from, date, subject} = message;
   const {type, id} = useParams();
+
+  useEffect(() => {
+    const fetchBoxById = async (id) => {
+      setLoading(true);
+      
+      var result
+      if(type == "sentbox") {
+        result = await MailApi.sentboxById(id);
+      } else {
+        result = await MailApi.inboxById(id);
+      }
+
+      setText(result.data.text);
+      setTo([result.data.to]);
+      setFrom([result.data.from]);
+      setSubject([result.data.subject]);
+      setDate([result.data.date]);
+      
+      form.setFieldsValue({text: result.data.text});
+      setLoading(false);
+    };
+    fetchBoxById(id);
+  }, [id]);
 
   console.log(type);
   console.log(id);
 
   const {TextArea} = Input;
   const [form] = Form.useForm();
-
-  useEffect(() => {
-    form.setFieldsValue({text: text});
-    //eslint-disable-next-line
-  }, []);
 
   const process = async () => {
     try {
