@@ -1,6 +1,15 @@
 .compose {
   margin-top: -1rem;
-  font-size: 1rem;
+  // font-size: 1rem;
+
+  .switch_group {
+    display: flex;
+    padding: 0.5rem 1rem;
+
+    .label_switch {
+      margin: 0 5px;
+    }
+  }
 
   .label {
     width: 2rem;
@@ -17,6 +26,11 @@
 
   .box {
     margin: 0;
+  }
+
+  .uploader {
+    border-bottom: 1px solid #d9d9d9;
+    padding: 1rem;
   }
 
   .button {
