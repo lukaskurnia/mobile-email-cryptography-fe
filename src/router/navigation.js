@@ -30,7 +30,7 @@ const Navigation = ({onClose}) => {
 
         <Menu.Item key="4" onClick={onClose}>
           <FontAwesomeIcon icon={faKey} style={{marginRight: "10px"}} />
-          <Link to="/generate_key">Generate Key</Link>
+          <Link to="/generate">Generate Key</Link>
         </Menu.Item>
       </Menu>
     </>

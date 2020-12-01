@@ -35,7 +35,7 @@ function App() {
             <Route path="/sentbox">
               <Sentbox />
             </Route>
-            <Route path="/generate_key">
+            <Route path="/generate">
               <GenerateKey />
             </Route>
             <Route path="/mail/:type/:id">
