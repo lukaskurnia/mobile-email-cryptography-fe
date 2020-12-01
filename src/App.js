@@ -6,6 +6,7 @@ import Inbox from "views/Inbox";
 import Compose from "views/Compose";
 import Sentbox from "views/Sentbox";
 import GenerateKey from "views/GenerateKey";
+import Mail from "views/Mail";
 
 import classes from "./App.module.scss";
 
@@ -28,7 +29,7 @@ function App() {
         <SideBar onClose={onClose} isDrawerOpen={isDrawerOpen} />
         <div className={classes.content}>
           <Switch>
-            <Route path="/compose" name="compose">
+            <Route path="/compose">
               <Compose />
             </Route>
             <Route path="/sentbox">
@@ -36,6 +37,9 @@ function App() {
             </Route>
             <Route path="/generate_key">
               <GenerateKey />
+            </Route>
+            <Route path="/mail/:type/:id">
+              <Mail />
             </Route>
             <Route exact path="/">
               <Inbox />
@@ -48,6 +52,3 @@ function App() {
 }
 
 export default App;
-// {
-//   /* <p dangerouslySetInnerHTML={{__html: text}}></p> */
-// }

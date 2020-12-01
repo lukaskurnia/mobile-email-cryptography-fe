@@ -1,15 +1,23 @@
 import React from "react";
+import {useHistory} from "react-router-dom";
 import {Avatar} from "antd";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faUser} from "@fortawesome/free-solid-svg-icons";
 
 import classes from "./index.module.scss";
 
-const MailCard = ({message, type}) => {
+const MailCard = ({message, type, id}) => {
+  const history = useHistory();
   const {to, subject, date, from} = message;
 
+  const navigate = () => {
+    history.push({
+      pathname: `/mail/${type}/${id}`
+    });
+  };
+
   return (
-    <div className={classes.sent_card}>
+    <div className={classes.mail_card} onClick={navigate}>
       <div>
         <Avatar
           size={48}

@@ -1,20 +1,21 @@
 import React from "react";
 import {useLocation} from "react-router-dom";
-import Compose from "./Compose";
+import BackHeader from "./BackHeader";
 import Main from "./Main";
 
 const TopBar = ({onDrawerClick}) => {
   const location = useLocation();
 
-  return (
-    <>
-      {location.pathname === "/compose" ? (
-        <Compose />
-      ) : (
-        <Main onDrawerClick={onDrawerClick} />
-      )}
-    </>
-  );
+  let topbar;
+  if (location.pathname === "/compose") {
+    topbar = <BackHeader text="Compose" />;
+  } else if (location.pathname.includes("/mail")) {
+    topbar = <BackHeader text="Mail" />;
+  } else {
+    topbar = <Main onDrawerClick={onDrawerClick} />;
+  }
+
+  return <>{topbar}</>;
 };
 
 export default TopBar;

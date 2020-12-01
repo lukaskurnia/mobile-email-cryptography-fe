@@ -26,7 +26,7 @@ const Inbox = () => {
       <Spin spinning={loading} size="large">
         {inboxData.length > 0
           ? inboxData.map((data, index) => (
-              <MailCard message={data} type="inbox" key={index} />
+              <MailCard message={data} type="inbox" id={index} key={index} />
             ))
           : null}
       </Spin>

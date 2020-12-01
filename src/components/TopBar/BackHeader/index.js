@@ -5,7 +5,7 @@ import {faArrowLeft, faEnvelope} from "@fortawesome/free-solid-svg-icons";
 
 import classes from "./index.module.scss";
 
-const TopBarCompose = () => {
+const BackHeader = ({text}) => {
   const history = useHistory();
 
   const goToHome = () => {
@@ -20,7 +20,7 @@ const TopBarCompose = () => {
     <div className={classes.topbar}>
       <p className={classes.back}>
         <FontAwesomeIcon icon={faArrowLeft} onClick={back} />
-        <span className={classes.title}>Compose</span>
+        <span className={classes.title}>{text}</span>
       </p>
       <div>
         <p className={classes.product} onClick={goToHome}>
@@ -32,4 +32,4 @@ const TopBarCompose = () => {
   );
 };
 
-export default TopBarCompose;
+export default BackHeader;
