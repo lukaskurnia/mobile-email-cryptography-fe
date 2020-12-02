@@ -37,7 +37,7 @@ const Mail = () => {
       setLoading(true);
 
       let result;
-      if (type == "sentbox") {
+      if (type === "sentbox") {
         result = await MailApi.sentboxById(id);
       } else {
         result = await MailApi.inboxById(id);
@@ -76,8 +76,9 @@ const Mail = () => {
 
       if (isVerify) {
         const status = await handleVerify(message);
+        // console.log(status);
 
-        if (status) {
+        if (status === true) {
           alert.success("This email is verified !");
         } else {
           alert.error("Mismatch, This email is not safe !");
